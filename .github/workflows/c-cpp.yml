@@ -17,3 +17,7 @@ jobs:
       run: ./packages/packages.sh
     - name: build
       run: ./build.sh
+    - uses: actions/upload-artifact@v4
+      with:
+        name: tf2.so
+        path: output/tf2.so
