@@ -13,7 +13,7 @@
     elif [ -f /etc/gentoo-release ]; then
 	echo "Detected Gentoo"
 	./packages/distros/gentoo.sh
-    elif [ -d /etc/xbps.d/ ]; then
+	elif [ -d /etc/xbps.d/ ]; then
 	echo "Detected Void Linux"
 	./packages/distros/void.sh
     else
