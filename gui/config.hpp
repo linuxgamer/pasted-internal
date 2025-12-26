@@ -130,6 +130,14 @@ struct Navbot {
   float look_smoothness = 50;
 
   bool do_objective = false;
+  bool roaming = true;
+  bool snipe = true;
+
+  struct Jobs {
+    int objective_priority = 1;
+    int snipe_priority = 2;
+    int roam_priority = 3;
+  } jobs;
 };
 
 struct Debug {
