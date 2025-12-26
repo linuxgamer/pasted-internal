@@ -16,7 +16,7 @@ struct button {
 struct Aim {
   bool master = true;
 
-  bool auto_shoot = true;
+  bool auto_shoot = false;
 
   enum class TargetType {
     FOV,
@@ -28,33 +28,37 @@ struct Aim {
   bool silent = true;
   
   struct button key = {.button = -SDL_BUTTON_X1};
-  bool use_key = true;
+  bool use_key = false;
   
-  float fov = 45;
-  bool draw_fov = false;
+  float fov = 6;
+  bool draw_fov = true;
   
   bool auto_scope = false;
   bool auto_unscope = false;
-  bool scoped_only = false;
+  bool scoped_only = true;
   
-  bool ignore_friends = true;
+  bool ignore_friends = false;
 };
 
 struct Esp {
   bool master = true;
 
   struct Player {
-    RGBA_float enemy_color = {.r = 1, .g = 0.501960784, .b = 0, .a = 1};
+    RGBA_float enemy_color = {.r = 1, .g = 0.2, .b = 0, .a = 1};
     RGBA_float team_color = {.r = 1, .g = 1, .b = 1, .a = 1};
-    RGBA_float friend_color = {.r = 0, .g = 0.862745098, .b = 0.31372549, .a = 1};
+    RGBA_float friend_color = {.r = 0, .g = 1, .b = 0.2, .a = 1};
     
     bool box = true;
     bool health_bar = true;    
     bool name = true;
+    int hb_pos = 0;
+    const char* hb_pos_items[2] = { "Left", "Right" };
     
     struct Flags {
       bool target_indicator = true;
       bool friend_indicator = true;
+      int pos = 0;
+      const char* pos_items[2] = { "Left", "Right" };
     } flags;
     
     bool friends = true;
@@ -83,27 +87,27 @@ struct Esp {
 struct Visuals {
 
   struct Removals {
-    bool scope = false;
+    bool scope = true;
     bool zoom = false;
   } removals;
   
   struct Thirdperson {
     struct button key = {.button = SDL_SCANCODE_LALT};
-    bool enabled = false;
+    bool enabled = true;
     float z = 150.0f;
     float y = 20.0f;
     float x = 0; 
   } thirdperson;
   
-  bool override_fov = false;
-  float custom_fov = 90;
+  bool override_fov = true;
+  float custom_fov = 100;
 };
 
 struct Misc {
 
   struct Movement {
     bool bhop = true;
-    bool no_push = false;
+    bool no_push = true;
   } movement;
 
   struct Automatization {
@@ -125,11 +129,11 @@ struct Navbot {
   bool look_at_path = false;
   float look_smoothness = 50;
 
-  bool do_objective = true;
+  bool do_objective = false;
 };
 
 struct Debug {
-  int font_height = 14;
+  int font_height = 16;
   int font_weight = 400;
   bool debug_render_all_entities = false;
   bool debug_draw_navbot_path = false;
